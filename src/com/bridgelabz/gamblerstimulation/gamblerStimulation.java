@@ -6,7 +6,7 @@ public class gamblerStimulation {
 	
 	public static int stake_per_day = 100, betPerGame = 1;
 	public static void main(String[] args) {
-		int i,won_amt=0,loss_amt=0,countWin=0,countLoss=0,max,min;
+		int i,won_amt=0,loss_amt=0,countWin=0,countLoss=0,max,min,sum_money=0;
 		int arr[] = new int[20];
 		for(i=0;i<=19;i++) {
 			while(stake_per_day > 50 && stake_per_day < 150) {
@@ -34,8 +34,16 @@ public class gamblerStimulation {
 				arr[i] = won_amt;
 			}
 		}
-		max = Arrays.stream(arr).max().getAsInt();
-		min = Arrays.stream(arr).min().getAsInt();
+		max = arr[0];
+		min = arr[0];
+		for(i=0;i<=19;i++) {
+			if(arr[i] > max) {
+				max = arr[i];
+			}
+			else if(arr[i] < min) {
+				min = arr[i];
+			}
+		}
 		System.out.println("The winning amount is :- " + won_amt);
 		System.out.println("The loss amount is :- " + loss_amt);
 		System.out.println("The winning days is :- " + countWin);
@@ -47,6 +55,13 @@ public class gamblerStimulation {
 			else if(arr[i] == min) {
 				System.out.println("The unluckiest day is " + i);
 			}
+			sum_money = sum_money + i;
+		}
+		if(sum_money > 20000) {
+			System.out.println("Would you like to continue playing next month");
+		}
+		else {
+			System.out.println("Would to like to stop gambling");
 		}
 		
 	}
